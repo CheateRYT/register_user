@@ -17,11 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $row = $result->fetch_assoc();
             $storedPassword = $row['password'];
 
-            if (password_verify($password, $storedPassword)) {
-                echo "Вы авторизовались";
-            } else {
-                echo "Неверный пароль";
-            }
+            echo "Добро пожаловать".$login;
         } else {
             echo "Пользователь не найден";
         }
