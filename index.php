@@ -71,5 +71,20 @@
       <button class="btn" type="submit">Зарегистрироваться</button>
     </form>
   </div>
+
+  <div class="container">
+    <h2>Авторизация</h2>
+    <form action="login.php" method="post">
+      <div class="form-group">
+        <label for="login">Логин:</label>
+        <input type="text" id="login" name="login" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button class="btn" type="submit">Войти</button>
+    </form>
+  </div>
 </body>
 </html>
