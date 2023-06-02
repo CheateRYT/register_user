@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $row = $result->fetch_assoc();
             $storedPassword = $row['password'];
 
-            echo "Добро пожаловать".$login;
+            echo "Добро пожаловать ".$login;
         } else {
             echo "Пользователь не найден";
         }
