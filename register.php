@@ -4,20 +4,34 @@ require_once('db.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = $_POST['login'];
     $password = $_POST['password'];
+    $money = $_POST['money'];
+    $level = $_POST['level'];
 
     // Проверка наличия данных в полях формы
     if (!empty($login) && !empty($password)) {
         // Подготовленное выражение для запроса
-        $stmt = $conn->prepare("INSERT INTO `users` (login, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $login, $password);
+        $checkStmt = $conn->prepare("SELECT * FROM `users` WHERE login = ?");
+        $checkStmt->bind_param("s", $login);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
 
-        if ($stmt->execute()) {
-            echo "Приветствую, " . $login;
+        if ($checkResult->num_rows > 0) {
+            echo "Данный логин уже занят.";
         } else {
-            echo "Ошибка при регистрации.";
+            // Подготовленное выражение для запроса
+            $insertStmt = $conn->prepare("INSERT INTO `users` (login, password, money, level) VALUES (?, ?, ?, ?)");
+            $insertStmt->bind_param("ssss", $login, $password, $money, $level);
+
+            if ($insertStmt->execute()) {
+                echo "Приветствую, " . $login;
+            } else {
+                echo "Ошибка при регистрации.";
+            }
+
+            $insertStmt->close();
         }
 
-        $stmt->close();
+        $checkStmt->close();
         $conn->close();
     } else {
         echo "Пожалуйста, заполните все поля формы.";
