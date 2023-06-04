@@ -16,8 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $storedPassword = $row['password'];
-
-            echo "Добро пожаловать ".$login;
+            $money = $row['money']; // Retrieve the 'money' field value
+            $level = $row['level'];
+            echo "Добро пожаловать ".$login."<br>Ваши деньги: ".$money."<br>Ваш уровень: ".$level;
         } else {
             echo "Пользователь не найден";
         }

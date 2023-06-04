@@ -68,6 +68,14 @@
         <label for="password">Пароль:</label>
         <input type="password" id="password" name="password" required>
       </div>
+      <div class="form-group">
+        <label for="money">Деньги:</label>
+        <input type="money" id="money" name="money" required>
+      </div>
+      <div class="form-group">
+        <label for="level">Игровой уровень:</label>
+        <input type="level" id="level" name="level" required>
+      </div>
       <button class="btn" type="submit">Зарегистрироваться</button>
     </form>
   </div>
